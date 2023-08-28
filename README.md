@@ -2,6 +2,13 @@
 
 * Built using [React](https://react.dev/), [MaterialUI](https://mui.com/), [Vite](https://vitejs.dev/) and [react-auth-kit](https://github.com/react-auth-kit/react-auth-kit)
 
+🟢 = Done
+<br>
+🟡 = In progress, but mostly done
+<br>
+🔵 = Future plans
+<br>
+
 ### Current state:
 * 🟢 Log In / Log out
 * 🟢 Sign Up

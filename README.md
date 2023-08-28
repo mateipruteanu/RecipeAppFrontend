@@ -1,8 +1,12 @@
-# React + Vite
+# Frontend for [RecipeAppBackend](https://github.com/mateipruteanu/RecipeAppBackend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* Built using [React](https://react.dev/), [MaterialUI](https://mui.com/), [Vite](https://vitejs.dev/) and [react-auth-kit](https://github.com/react-auth-kit/react-auth-kit)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Current state:
+* 🟢 Log In / Log out
+* 🟢 Sign Up
+* 🟢 Protected routing for `/` route
+* 🟢 Getting all recipes and showing them as responsive cards
+* 🔵 Adding / Deleting a recipe from the UI
+* 🔵 Showing the specific user's recipes (added & favorites)
+* 🔵 Searching for a recipe

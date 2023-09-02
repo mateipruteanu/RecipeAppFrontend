@@ -3,13 +3,13 @@ import {
     Card,
     CardActions,
     CardContent,
-    CardHeader,
+    CardHeader, Checkbox,
     Collapse, Paper, Table, TableBody,
     TableCell,
     TableContainer, TableHead, TableRow,
     Typography
 } from "@mui/material";
-import {ExpandMore} from "@mui/icons-material";
+import {ExpandMore, Favorite, FavoriteBorder} from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 
@@ -41,7 +41,14 @@ function CustomCard(props) {
                 <Typography variant="body1">
                     {props.description}
                 </Typography>
-                <CardActions>
+                <CardActions sx={{justifyContent:"space-between"}}>
+                    <Checkbox
+                        // checked={props.liked}
+                        // onChange={props.handleLike}
+                        // inputProps={{ 'aria-label': 'controlled' }}
+                        icon={<FavoriteBorder />}
+                        checkedIcon={<Favorite />}
+                    />
                     <ExpandMore
                         onClick={handleExpandClick}
                         aria-expanded={expanded}

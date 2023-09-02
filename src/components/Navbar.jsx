@@ -12,10 +12,12 @@ import {
     Typography
 } from "@mui/material";
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import {Logout, PersonAdd, Settings} from "@mui/icons-material";
+import {Logout, Settings} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {useSignOut} from "react-auth-kit";
+import {useAuthHeader, useSignOut} from "react-auth-kit";
+import prepareJWT from "../utils/PrepareJWT.js";
+import jwtDecoder from "jwt-decode";
 
 const StyledToolbar = styled(Toolbar)({
     display: "flex",
@@ -37,9 +39,16 @@ const Icons = styled(Box) (({theme}) => ({
 
 function Navbar() {
     const signOut = useSignOut();
+    const authHeader = useAuthHeader();
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+
+    const jwt = jwtDecoder(prepareJWT(authHeader()));
+    const username = jwt.sub;
+
+
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     }
@@ -86,7 +95,7 @@ function Navbar() {
                        aria-expanded={open ? 'true' : undefined}
                        sx={{cursor:"pointer"}}>
                     <Avatar src={""} />
-                    <Typography>username</Typography>
+                    <Typography>{username}</Typography>
                 </Icons>
             </StyledToolbar>
             <Menu

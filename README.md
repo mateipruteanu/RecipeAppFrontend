@@ -10,10 +10,15 @@
 <br>
 
 ### Current state:
-* 🟢 Log In / Log out
-* 🟢 Sign Up
-* 🟢 Protected routing for `/` route
+* 🟢 Log In / Log out / Sign Up
+* 🟢 Protected routing for `/`, `/account`, `settings` routes
 * 🟢 Getting all recipes and showing them as responsive cards
-* 🔵 Adding / Deleting a recipe from the UI
-* 🔵 Showing the specific user's recipes (added & favorites)
+* 🟢 Showing the specific user's recipes (added & favorites)
+* 🟢 Adding a new recipe from the UI
+* 🔵 Deleting a recipe from the UI
+* 🔵 Liking a recipe actually sends a request to the backend
 * 🔵 Searching for a recipe
+### Demo
+
+  ![recipeAppDemo](https://github.com/mateipruteanu/RecipeAppFrontend/assets/35728927/60a7a539-8e98-4bc9-9347-4aaf7234ad6b)
+

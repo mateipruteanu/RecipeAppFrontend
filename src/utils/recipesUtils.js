@@ -3,6 +3,28 @@ import jwtDecoder from "jwt-decode";
 import axios from "axios";
 import RecipesToObjects from "./RecipesToObjects.js";
 
+async function addRecipe(recipe, authHeader) {
+    try {
+        const jwt = prepareJWT(authHeader());
+        const config = {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            }
+        };
+        const decodedJWT = jwtDecoder(jwt);
+        const url = "http://localhost:8080/api/users/" + decodedJWT.id + "/recipes";
+        const response = await axios.post(
+            url,
+            recipe,
+            config
+        );
+        return response.status === 200;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
 async function getLikedRecipes(authHeader) {
     try {
         const jwt = prepareJWT(authHeader());
@@ -76,4 +98,4 @@ async function getAllRecipes(authHeader) {
     }
 }
 
-export {getMyRecipes, getAllRecipes, getLikedRecipes};
+export {getMyRecipes, getAllRecipes, getLikedRecipes, addRecipe};

@@ -67,6 +67,7 @@ function Feed({selectedOption}) {
                     return (
                         <CustomCard
                             key={recipe.id}
+                            id={recipe.id}
                             name={recipe.name}
                             subheader="Recipe"
                             description={recipe.description}

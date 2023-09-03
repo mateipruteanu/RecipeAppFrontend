@@ -46,6 +46,7 @@ function CustomCard(props) {
                         // checked={props.liked}
                         // onChange={props.handleLike}
                         // inputProps={{ 'aria-label': 'controlled' }}
+                        id={"like-checkbox-"+props.id}
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite />}
                     />

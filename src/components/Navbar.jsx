@@ -88,7 +88,7 @@ function Navbar() {
             <StyledToolbar>
                 <Typography variant={"h6"} sx={{display:{xs:"none", sm:"block"}, cursor:"pointer"}} onClick={handleHome}>RecipeApp</Typography>
                 <FoodBankIcon sx={{display:{xs:"block", sm:"none"}}}/>
-                <SearchBar> <InputBase placeholder={"Search for a recipe..."}/> </SearchBar>
+                <SearchBar > <InputBase id={"search-bar"} placeholder={"Search for a recipe..."}/> </SearchBar>
                 <Icons onClick={handleClick}
                        aria-controls={open ? 'account-menu' : undefined}
                        aria-haspopup="true"

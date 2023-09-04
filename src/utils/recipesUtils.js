@@ -149,4 +149,25 @@ async function getAllRecipes(authHeader) {
     }
 }
 
-export {getMyRecipes, getAllRecipes, getLikedRecipes, addRecipe};
+async function deleteRecipe(recipeId, authHeader) {
+    try {
+        const jwt = prepareJWT(authHeader());
+        const config = {
+            headers: {
+                Authorization: `Bearer ${jwt}`,
+            }
+        };
+        const decodedJWT = jwtDecoder(jwt);
+        const url = "http://localhost:8080/api/users/" + decodedJWT.id + "/recipes/" + recipeId;
+        const response = await axios.delete(
+            url,
+            config
+        );
+        return response.status === 200;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
+export {getMyRecipes, getAllRecipes, getLikedRecipes, addRecipe, deleteRecipe};

@@ -1,17 +1,19 @@
 import React from "react";
 import {
+    Box,
     Card,
     CardActions,
     CardContent,
     CardHeader, Checkbox,
-    Collapse, Paper, Table, TableBody,
+    Collapse, IconButton, Paper, Table, TableBody,
     TableCell,
     TableContainer, TableHead, TableRow,
     Typography
 } from "@mui/material";
-import {ExpandMore, Favorite, FavoriteBorder} from "@mui/icons-material";
+import {Delete, ExpandMore, Favorite, FavoriteBorder} from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {likeRecipe, unlikeRecipe} from "../utils/likeUtils.js";
+import {deleteRecipe} from "../utils/recipesUtils.js";
 
 
 
@@ -57,6 +59,13 @@ function CustomCard(props) {
         }
     }
 
+    const handleDelete = () => {
+        if(deleteRecipe(props.id, props.authHeader)) {
+            console.log("Deleted recipe: ", props.id);
+        }
+    }
+
+
     return (
         <Card>
             <CardHeader
@@ -68,21 +77,27 @@ function CustomCard(props) {
                     {props.description}
                 </Typography>
                 <CardActions sx={{justifyContent:"space-between"}}>
-                    <Checkbox
-                        checked={liked}
-                        onChange={handleLike}
-                        inputProps={{ 'aria-label': 'controlled' }}
-                        id={"like-checkbox-"+props.id}
-                        icon={<FavoriteBorder />}
-                        checkedIcon={<Favorite />}
-                    />
-                    <ExpandMore
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                    >
-                        <ExpandMoreIcon />
-                    </ExpandMore>
+                    <Box>
+                        <IconButton
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+                        >
+                            <ExpandMoreIcon />
+                        </IconButton>
+                        <Checkbox
+                            checked={liked}
+                            onChange={handleLike}
+                            inputProps={{ 'aria-label': 'controlled' }}
+                            id={"like-checkbox-"+props.id}
+                            icon={<FavoriteBorder />}
+                            checkedIcon={<Favorite />}
+                        />
+                    </Box>
+                    {props.canDelete &&
+                        <IconButton aria-label="delete" onClick={handleDelete}>
+                            <Delete />
+                        </IconButton>}
                 </CardActions>
 
                 <Collapse in={expanded} timeout="auto" unmountOnExit>

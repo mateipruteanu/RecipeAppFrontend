@@ -15,8 +15,8 @@
 * 🟢 Getting all recipes and showing them as responsive cards
 * 🟢 Showing the specific user's recipes (added & favorites)
 * 🟢 Adding a new recipe from the UI
+* 🟢 Liking / unliking a recipe from the UI
 * 🔵 Deleting a recipe from the UI
-* 🔵 Liking a recipe actually sends a request to the backend
 * 🔵 Searching for a recipe
 ### Demo
 

@@ -8,8 +8,6 @@ function RecipesToObjects(recipesJSON) {
             description: recipe.description,
             instructions: recipe.instructions,
             recipeIngredients: recipe.recipeIngredients,
-            liked: false,
-            canDelete: false,
         }
         recipes.push(recipeObj);
     });

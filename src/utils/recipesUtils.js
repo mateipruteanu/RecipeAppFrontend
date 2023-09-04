@@ -57,6 +57,7 @@ async function getLikedRecipes(authHeader) {
 
 async function getMyRecipes(authHeader) {
     try {
+        let recipes = [];
         const jwt = prepareJWT(authHeader());
         const config = {
             headers: {
@@ -70,15 +71,33 @@ async function getMyRecipes(authHeader) {
             config
         );
         if(response.status === 200) {
-            let recipes = RecipesToObjects(response.data);
+            recipes = RecipesToObjects(response.data);
             recipes.forEach((recipe) => {
                 recipe.canDelete = true;
             });
-
-            return recipes;
         }
         else
             return [];
+
+        const url2 = "http://localhost:8080/api/users/" + decodedJWT.id + "/favorites";
+        const response2 = await axios.get(
+            url2,
+            config
+        );
+        if(response2.status === 200) {
+            let likedRecipes = RecipesToObjects(response2.data);
+            recipes.forEach((recipe) => {
+                likedRecipes.forEach((likedRecipe) => {
+                    if(recipe.id === likedRecipe.id)
+                        recipe.liked = true;
+                });
+            });
+        }
+        else
+            recipes.forEach((recipe) => {
+                recipe.liked = false;
+            });
+        return recipes;
     } catch (error) {
         console.log(error);
         return [];
@@ -87,6 +106,7 @@ async function getMyRecipes(authHeader) {
 
 async function getAllRecipes(authHeader) {
     try {
+        let allRecipes = [];
         const jwt = prepareJWT(authHeader());
         const config = {
             headers: {
@@ -98,10 +118,31 @@ async function getAllRecipes(authHeader) {
             config
         );
         if(response.status === 200) {
-            return RecipesToObjects(response.data);
+            allRecipes = RecipesToObjects(response.data);
         }
         else
-            return [];
+            allRecipes = [];
+
+        const decodedJWT = jwtDecoder(jwt);
+        const url = "http://localhost:8080/api/users/" + decodedJWT.id + "/favorites";
+        const response2 = await axios.get(
+            url,
+            config
+        );
+        if(response2.status === 200) {
+            let likedRecipes = RecipesToObjects(response2.data);
+            allRecipes.forEach((recipe) => {
+                likedRecipes.forEach((likedRecipe) => {
+                    if(recipe.id === likedRecipe.id)
+                        recipe.liked = true;
+                });
+            });
+        }
+        else
+            allRecipes.forEach((recipe) => {
+                recipe.liked = false;
+            });
+        return allRecipes;
     } catch (error) {
         console.log(error);
         return [];

@@ -11,15 +11,13 @@ import {
 } from "@mui/material";
 import {ExpandMore, Favorite, FavoriteBorder} from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {likeRecipe, unlikeRecipe} from "../utils/likeUtils.js";
+
 
 
 function CustomCard(props) {
     const [expanded, setExpanded] = React.useState(false);
-    let liked = props.liked;
-
-    if(liked !== true) {
-        liked = false;
-    }
+    const [liked, setLiked] = React.useState(props.liked || false);
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -37,7 +35,26 @@ function CustomCard(props) {
     });
 
     const handleLike = () => {
-        console.log("Like clicked");
+        const recipe = {
+            id: props.id,
+            name: props.name,
+            description: props.description,
+            instructions: props.instructions,
+            recipeIngredients: props.recipeIngredients,
+        }
+        if(liked) {
+            if(unlikeRecipe(recipe, props.authHeader)) {
+                console.log("Unliked recipe: ", recipe);
+                setLiked(false);
+            }
+
+        }
+        else {
+            if(likeRecipe(recipe, props.authHeader)) {
+                console.log("Liked recipe: ", recipe);
+                setLiked(true);
+            }
+        }
     }
 
     return (

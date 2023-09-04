@@ -76,6 +76,7 @@ function Feed({selectedOption}) {
                             recipeIngredients={recipe.recipeIngredients}
                             liked={recipe.liked}
                             canDelete={recipe.canDelete}
+                            authHeader={authHeader}
                         />
                     )
                 })}

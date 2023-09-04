@@ -16,9 +16,10 @@
 * 🟢 Showing the specific user's recipes (added & favorites)
 * 🟢 Adding a new recipe from the UI
 * 🟢 Liking / unliking a recipe from the UI
-* 🔵 Deleting a recipe from the UI
+* 🟢 Deleting a recipe from the UI
 * 🔵 Searching for a recipe
 ### Demo
 
-  ![recipeAppDemo](https://github.com/mateipruteanu/RecipeAppFrontend/assets/35728927/60a7a539-8e98-4bc9-9347-4aaf7234ad6b)
+![demo](https://github.com/mateipruteanu/RecipeAppFrontend/assets/35728927/05c47394-19be-4cfc-89e7-7b88e855b26f)
+
 

@@ -15,6 +15,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function CustomCard(props) {
     const [expanded, setExpanded] = React.useState(false);
+    let liked = props.liked;
+
+    if(liked !== true) {
+        liked = false;
+    }
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -31,6 +36,10 @@ function CustomCard(props) {
         )
     });
 
+    const handleLike = () => {
+        console.log("Like clicked");
+    }
+
     return (
         <Card>
             <CardHeader
@@ -43,9 +52,9 @@ function CustomCard(props) {
                 </Typography>
                 <CardActions sx={{justifyContent:"space-between"}}>
                     <Checkbox
-                        // checked={props.liked}
-                        // onChange={props.handleLike}
-                        // inputProps={{ 'aria-label': 'controlled' }}
+                        checked={liked}
+                        onChange={handleLike}
+                        inputProps={{ 'aria-label': 'controlled' }}
                         id={"like-checkbox-"+props.id}
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite />}

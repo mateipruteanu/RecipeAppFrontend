@@ -40,7 +40,12 @@ async function getLikedRecipes(authHeader) {
             config
         );
         if(response.status === 200) {
-            return RecipesToObjects(response.data);
+            let recipes = RecipesToObjects(response.data);
+            recipes.forEach((recipe) => {
+                recipe.liked = true;
+            });
+
+            return recipes;
         }
         else
             return [];
@@ -65,7 +70,12 @@ async function getMyRecipes(authHeader) {
             config
         );
         if(response.status === 200) {
-            return RecipesToObjects(response.data);
+            let recipes = RecipesToObjects(response.data);
+            recipes.forEach((recipe) => {
+                recipe.canDelete = true;
+            });
+
+            return recipes;
         }
         else
             return [];

@@ -59,6 +59,7 @@ function Feed({selectedOption}) {
     return (
         <Box bgcolor={""} flex={6} p={2}>
             <Typography variant={"h4"} textAlign={"center"}>Recipes</Typography>
+            {loading && <Typography variant={"h6"} textAlign={"center"}>Loading...</Typography>}
             <Stack direction="column"
                    spacing={2}
                    justifyContent="center"
@@ -69,10 +70,12 @@ function Feed({selectedOption}) {
                             key={recipe.id}
                             id={recipe.id}
                             name={recipe.name}
-                            subheader="Recipe"
+                            subheader={"Added by " + recipe.addedBy}
                             description={recipe.description}
                             instructions={recipe.instructions}
                             recipeIngredients={recipe.recipeIngredients}
+                            liked={recipe.liked}
+                            canDelete={recipe.canDelete}
                         />
                     )
                 })}

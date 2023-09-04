@@ -21,6 +21,8 @@ import {
 import { Add } from "@mui/icons-material";
 import {addRecipe} from "../utils/recipesUtils.js";
 import {useAuthHeader} from "react-auth-kit";
+import prepareJWT from "../utils/PrepareJWT.js";
+import jwtDecoder from "jwt-decode";
 
 const StyledModal = styled(Modal)({
     display: "flex",
@@ -85,6 +87,8 @@ function AddRecipe() {
         const recipeName = document.getElementById("recipe-name").value;
         const recipeDescription = document.getElementById("recipe-description").value;
         const recipeInstructions = document.getElementById("recipe-instructions").value;
+        const username = jwtDecoder(prepareJWT(authHeader())).sub;
+
 
         const recipeIngredients = ingredients.map((ingredient) => {
             return {
@@ -100,6 +104,7 @@ function AddRecipe() {
             description: recipeDescription,
             instructions: recipeInstructions,
             recipeIngredients: recipeIngredients,
+            addedBy: username,
         };
 
         console.log(recipe);
